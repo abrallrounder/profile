@@ -9,18 +9,10 @@
 }
 
 body {
-  background: 
-    linear-gradient(rgba(10,0,0,0.85), rgba(10,0,0,0.85)),
-    url("../img/bg.jpg");
-
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-
+  background: linear-gradient(135deg, #0b0000, #1a0000);
   color: #f2f2f2;
   line-height: 1.6;
 }
-
 /* =====================
    Fade Animation
 ===================== */
@@ -66,7 +58,8 @@ header h1 {
 }
 
 header p {
-  color: #d6b3b3;
+  color: linear-gradient(rgba(10,0,0,0.85), rgba(10,0,0,0.85)),
+    url("../img/bg.jpg");
   margin-top: 8px;
   font-size: 1.1rem;
 }
