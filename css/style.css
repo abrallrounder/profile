@@ -9,7 +9,14 @@
 }
 
 body {
-  background: linear-gradient(135deg, #0b0000, #1a0000);
+  background: 
+    linear-gradient(rgba(10,0,0,0.85), rgba(10,0,0,0.85)),
+    url("../img/bg.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
   color: #f2f2f2;
   line-height: 1.6;
 }
