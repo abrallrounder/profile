@@ -197,3 +197,56 @@ body.light section {
   border: none;
   cursor: pointer;
 }
+
+/* =====================
+   Contact Table
+===================== */
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 12px;
+  border-bottom: 1px solid #400000;
+  text-align: left;
+}
+
+.contact-table th {
+  background: #8b0000;
+  color: #fff;
+}
+
+.contact-table td {
+  background: #1a0000;
+}
+
+.contact-table a {
+  color: #ff9999;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.contact-table a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* =====================
+   Footer Fix
+===================== */
+.footer {
+  text-align: center;
+  padding: 25px 10px;
+  margin-top: 50px;
+  background: #0b0000;
+  border-top: 1px solid #400000;
+}
+
+.footer p {
+  color: #ffcccc;
+  font-size: 0.95rem;
+}
+
