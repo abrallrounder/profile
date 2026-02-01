@@ -1,158 +1,88 @@
-/* =====================
-   Global
-===================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
-body {
-  background: radial-gradient(circle at top,#1a0000,#000);
-  color: #f2f2f2;
-  overflow-x: hidden;
-  transition: background 0.6s, color 0.6s;
-}
-
-/* =====================
+/* ======================
    Loader
-===================== */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle,#1a0000,#000);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  transition: 0.7s ease;
-}
+====================== */
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
+  setTimeout(() => {
+    loader.style.opacity = "0";
+    setTimeout(() => loader.remove(), 600);
+  }, 1200);
+});
 
-.spinner {
-  width: 70px;
-  height: 70px;
-  border: 5px solid rgba(255,255,255,0.15);
-  border-top: 5px solid #ff4d4d;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* =====================
+/* ======================
    Scroll Reveal
-===================== */
-.fade {
-  opacity: 0;
-  transform: translateY(60px) scale(0.95);
-  transition: 0.9s cubic-bezier(.19,1,.22,1);
-}
-.fade.show {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+====================== */
+const fades = document.querySelectorAll(".fade");
 
-/* =====================
-   Section
-===================== */
-section {
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 35px;
-  background: rgba(30,0,0,0.85);
-  border-radius: 16px;
-  border: 1px solid #400000;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.7);
-  transition: 0.4s;
-}
-section:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 35px 80px rgba(255,77,77,0.25);
-}
+const reveal = () => {
+  fades.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 120) {
+      el.classList.add("show");
+    }
+  });
+};
 
-section h2 {
-  color: #ffb3b3;
-  margin-bottom: 20px;
-  border-left: 5px solid #ff4d4d;
-  padding-left: 12px;
-}
+window.addEventListener("scroll", reveal);
+reveal();
 
-/* =====================
-   Identity Text
-===================== */
-#identityText {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s ease;
-}
-#identityText.text-show {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* ======================
+   Dark / Light Toggle
+====================== */
+const toggle = document.getElementById("theme-toggle");
 
-/* =====================
-   Button
-===================== */
-button {
-  margin-top: 25px;
-  padding: 12px 32px;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(135deg,#8b0000,#ff4d4d);
-  color: #fff;
-  font-size: 1rem;
-  transition: 0.35s;
-}
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px rgba(255,77,77,0.9);
-}
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggle.textContent =
+    document.body.classList.contains("light") ? "☀️" : "🌙";
+});
 
-/* =====================
-   Scroll Top
-===================== */
-#scrollTop {
-  position: fixed;
-  bottom: 30px;
-  right: 30px;
-  display: none;
-  padding: 14px 18px;
-  border-radius: 50%;
-  background: linear-gradient(135deg,#8b0000,#ff4d4d);
-  color: #fff;
-}
+/* ======================
+   Scroll To Top
+====================== */
+const scrollBtn = document.getElementById("scrollTop");
 
-.pulse {
-  animation: pulse 0.6s;
-}
-@keyframes pulse {
-  0%{transform:scale(1)}
-  50%{transform:scale(1.3)}
-  100%{transform:scale(1)}
-}
+window.addEventListener("scroll", () => {
+  scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+});
 
-/* =====================
-   Dark / Light
-===================== */
-body.light {
-  background: #f4f4f4;
-  color: #111;
-}
-body.light section {
-  background: #fff;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-}
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-#theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 10px 14px;
-  border-radius: 50%;
-  background: #8b0000;
-  color: #fff;
-  cursor: pointer;
-  z-index: 1000;
-}
+
+/* ======================
+   EN / BN Toggle
+====================== */
+const langBtn = document.getElementById("langToggle");
+const textBox = document.getElementById("identityText");
+
+const englishText = `
+  <p>Nature calls to me in a silent language only the heart can hear.</p>
+  <p>Beneath the endless blue sky, with the soft touch of the wind, I feel deeply rooted—exactly where I belong.</p>
+  <p>I long to drift with the ocean’s currents, where the waves whisper stories and my restless mind finally finds peace.</p>
+  <p>Lost among trees, I discover myself anew; surrounded by mountains, water, and sky, something honest awakens within me.</p>
+  <p><b>Those who love nature truly know how to love people—and that belief is who I am.</b></p>
+`;
+
+const banglaText = `
+  <p>প্রকৃতি আমাকে ডাকে এক নীরব ভাষায়, যা শুধু হৃদয়ই বুঝতে পারে।</p>
+  <p>অসীম নীল আকাশের নিচে, বাতাসের কোমল ছোঁয়ায় আমি গভীরভাবে অনুভব করি—এটাই আমার ঠিকানা।</p>
+  <p>সমুদ্রের স্রোতের সঙ্গে ভেসে যেতে ইচ্ছে করে, যেখানে ঢেউরা নিজেদের গল্প ফিসফিস করে আর আমার অস্থির মন ধীরে ধীরে শান্ত হয়ে যায়।</p>
+  <p>গাছের ভেতর হারিয়ে গিয়ে নিজেকে নতুন করে আবিষ্কার করি; পাহাড়, জল আর আকাশের মাঝে আমার ভেতরের সৎ মানুষটি জেগে ওঠে।</p>
+  <p><b>যে প্রকৃতিকে ভালোবাসতে জানে, সে মানুষকেও সত্যিকার অর্থে ভালোবাসতে জানে—এই বিশ্বাসটাই আমার পরিচয়।</b></p>
+`;
+
+let isEnglish = true;
+
+langBtn.addEventListener("click", () => {
+  if (isEnglish) {
+    textBox.innerHTML = banglaText;
+    langBtn.textContent = "EN";
+  } else {
+    textBox.innerHTML = englishText;
+    langBtn.textContent = "BN";
+  }
+  isEnglish = !isEnglish;
+});
+
