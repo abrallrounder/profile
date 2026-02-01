@@ -1,31 +1,34 @@
-/* =========================
-   Loader Control
-========================= */
+/* ======================
+   Loader
+====================== */
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
   setTimeout(() => {
     loader.style.opacity = "0";
-    setTimeout(() => loader.style.display = "none", 600);
+    setTimeout(() => loader.remove(), 600);
   }, 1200);
 });
 
-/* =========================
+/* ======================
    Scroll Reveal
-========================= */
-const reveals = document.querySelectorAll(".fade");
+====================== */
+const fades = document.querySelectorAll(".fade");
 
-window.addEventListener("scroll", () => {
-  reveals.forEach(el => {
+const reveal = () => {
+  fades.forEach(el => {
     const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
+    if (top < window.innerHeight - 120) {
       el.classList.add("show");
     }
   });
-});
+};
 
-/* =========================
+window.addEventListener("scroll", reveal);
+reveal();
+
+/* ======================
    Dark / Light Toggle
-========================= */
+====================== */
 const toggle = document.getElementById("theme-toggle");
 
 toggle.addEventListener("click", () => {
@@ -34,9 +37,9 @@ toggle.addEventListener("click", () => {
     document.body.classList.contains("light") ? "☀️" : "🌙";
 });
 
-/* =========================
+/* ======================
    Scroll To Top
-========================= */
+====================== */
 const scrollBtn = document.getElementById("scrollTop");
 
 window.addEventListener("scroll", () => {
