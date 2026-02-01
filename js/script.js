@@ -52,3 +52,46 @@ animateText();
 
 
 
+// About Books EN/BN Toggle
+const aboutSection = document.querySelector(".fade"); // About Books section
+const toggleBtn = aboutSection.querySelector(".langToggle"); // BN / EN button
+
+const englishText = `
+  <h2>A few words about books</h2>
+  <p><b>I love books deeply.</b></p>
+  <p>As I turn each page, it feels like I’m not just flipping paper—</p>
+  <p>I’m slowly discovering myself.</p>
+  <p>I love seeing every letter, I love understanding every line,</p>
+  <p>because within those lines, I find pieces of who I am.</p>
+  <p>Books have taught me so many things—</p>
+  <p>how to think, how to understand,</p>
+  <p>how to remain deep even in silence.</p>
+  <p>Books didn’t just give me knowledge;</p>
+  <p>they taught me how to understand people,</p>
+  <p>and more than that—how to understand myself.</p>
+`;
+
+const banglaText = `
+  <h2>বই নিয়ে কিছু কথা</h2>
+  <p>বই আমার খুব ভালো লাগে।</p>
+  <p>বইয়ের প্রতিটি পৃষ্ঠা উল্টাতে গিয়ে মনে হয়, আমি শুধু পাতা নয়—নিজেকেই ধীরে ধীরে আবিষ্কার করছি।</p>
+  <p>প্রতিটি অক্ষর দেখতে ভালো লাগে, প্রতিটি লাইন বুঝতে ভালো লাগে,</p>
+  <p>কারণ এই লাইনগুলোর ভেতরেই আমি নিজেকে খুঁজে পাই।</p>
+  <p>বই আমাকে অনেক কিছু শিখিয়েছে—</p>
+  <p>কিভাবে ভাবতে হয়, কিভাবে বুঝতে হয়,</p>
+  <p>কিভাবে নীরবে গভীর হয়ে থাকতে হয়।</p>
+  <p>আসলে বই আমাকে শুধু জ্ঞান দেয়নি,</p>
+  <p>বই আমাকে মানুষ বুঝতে শিখিয়েছে,</p>
+  <p>আর তার চেয়েও বেশি—নিজেকে বুঝতে শিখিয়েছে।</p>
+`;
+
+let isEnglish = true;
+
+toggleBtn.addEventListener("click", () => {
+  aboutSection.innerHTML = (isEnglish ? banglaText : englishText) + `<button class="langToggle">BN / EN</button>`;
+  isEnglish = !isEnglish;
+
+  // Re-add listener to the new button after switching
+  const newBtn = aboutSection.querySelector(".langToggle");
+  newBtn.addEventListener("click", () => toggleBtn.click());
+});
