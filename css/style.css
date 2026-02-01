@@ -276,3 +276,29 @@ body.light section{background:#fff;border:1px solid #ddd;}
   transform: translateY(-4px) scale(1.1);
   box-shadow: 0 18px 45px rgba(255,204,51,0.9);
 }
+
+
+
+
+
+.books-table {
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.books-table td {
+  text-align: left;
+  padding: 12px 15px;
+}
+
+.books-table tbody tr:hover {
+  background-color: #330000;
+}
+
+.books-table thead .section-title {
+  color: #ff4d4d;
+  font-size: 18px;
+  border-bottom: 2px solid #ff4d4d;
+}
+
