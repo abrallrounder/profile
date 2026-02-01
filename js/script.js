@@ -52,3 +52,16 @@ animateText();
 
 
 
+// Expandable Side Menu
+const mainBtn = document.querySelector(".side-main-btn");
+const subBtns = document.querySelector(".side-sub-btns");
+
+mainBtn.addEventListener("click", () => {
+  subBtns.classList.toggle("show");
+
+  if (subBtns.classList.contains("show")) {
+    subBtns.style.maxHeight = subBtns.scrollHeight + "px";
+  } else {
+    subBtns.style.maxHeight = "0";
+  }
+});
