@@ -58,7 +58,7 @@ body::before {
 header{
   text-align:center;
   padding:110px 20px 60px;
-  background:linear-gradient(rgba(10,0,0,0.75),rgba(10,0,0,0.9)),url("../img/cover.jpg");
+  background:linear-gradient(rgba(10,0,0,0.75),rgba(10,0,0,0.9)),url("../img/brother.jpg");
   background-size:cover;
   background-position:center;
   border-bottom:1px solid #550000;
