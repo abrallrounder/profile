@@ -48,9 +48,19 @@ body::before {
   z-index: 9999;
   transition: opacity 0.6s ease;
 }
-.loader-box {text-align:center;color:#ffcccc;}
-.spinner {width:70px;height:70px;border:5px solid rgba(255,255,255,0.2);border-top:5px solid #ff4d4d;border-radius:50%;animation:spin 1s linear infinite;}
-@keyframes spin {to{transform:rotate(360deg);}}
+
+.spinner {
+  width:70px;
+  height:70px;
+  border:5px solid rgba(255,255,255,0.2);
+  border-top:5px solid #ff4d4d;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 /* =====================
    Header
@@ -58,34 +68,56 @@ body::before {
 header{
   text-align:center;
   padding:110px 20px 60px;
-  background:url("../img/brother.jpg");
-  background-size:cover;
-  background-position:center;
+  background:url("../img/brother.jpg") center/cover;
   border-bottom:1px solid #550000;
   position: relative;
-  overflow: hidden;
 }
 
-header::after {
-  content:"";
+header h1 { font-size:2.6rem; color:#ffcccc; }
+header p  { font-size:1.1rem; color:#f5dada; }
+
+/* =====================
+   Profile + Cover
+===================== */
+.profile-area {
+  position: relative;
+  display: inline-block;
+}
+
+.profile {
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  border:4px solid #8b0000;
+  box-shadow:0 0 30px rgba(139,0,0,0,0.9);
+  object-fit: cover;
+  z-index: 3;
+}
+
+.profile-cover {
   position:absolute;
-  inset:0;
-  background:radial-gradient(circle,#ff4d4d20,transparent 70%);
-  animation: headerGlow 6s ease-in-out infinite alternate;
-  pointer-events: none;
+  top:110px;
+  left:50%;
+  transform:translateX(-50%);
+  width:260px;
+  height:80px;
+  border-radius:16px;
+  overflow:hidden;
+  border:3px solid #8b0000;
+  background:#120000;
+  box-shadow:0 12px 35px rgba(139,0,0,0,0.9);
+  z-index:2;
 }
 
-@keyframes headerGlow {
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
+.profile-cover img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.profile{width:150px;height:150px;border-radius:50%;border:4px solid #8b0000;box-shadow:0 0 30px rgba(139,0,0,0.8);margin-bottom:20px;object-fit:cover;}
-header h1{font-size:2.6rem;color:#ffcccc;}
-header p{font-size:1.1rem;color:#f5dada;}
-
-/* Sections */
+/* =====================
+   Sections
+===================== */
 section{
   max-width:900px;
   margin:40px auto;
@@ -94,231 +126,52 @@ section{
   border-radius:14px;
   border:1px solid #400000;
   box-shadow:0 10px 30px rgba(0,0,0,0.6);
-  position: relative;
-  overflow: hidden;
 }
 
-section::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg, rgba(255,77,77,0.15), rgba(255,153,153,0.1));
-  transform:translateX(-100%);
-  animation: slideOverlay 10s linear infinite;
-  pointer-events: none;
+section h2 {
+  color:#ffb3b3;
+  margin-bottom:20px;
+  border-left:5px solid #8b0000;
+  padding-left:12px;
 }
-
-@keyframes slideOverlay {
-  0%{transform:translateX(-100%);}
-  50%{transform:translateX(100%);}
-  100%{transform:translateX(-100%);}
-}
-
-section h2{color:#ffb3b3;margin-bottom:20px;border-left:5px solid #8b0000;padding-left:12px;}
 
 /* =====================
-   Tables (Responsive)
+   Tables
 ===================== */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  background: #140000;
-  display: block;         /* allows scrolling on small screens */
-  overflow-x: auto;       /* horizontal scroll if needed */
-  -webkit-overflow-scrolling: touch; /* smooth scroll for iOS */
+  width:100%;
+  border-collapse:collapse;
+  background:#140000;
 }
 
 th, td {
-  padding: 14px;
-  text-align: center;
-  min-width: 120px;       /* prevent cells from collapsing too much */
+  padding:14px;
+  text-align:center;
 }
 
-th {
-  background: #8b0000;
-}
+th { background:#8b0000; }
+tr:nth-child(even) td { background:#1f0000; }
 
-tr:nth-child(even) td {
-  background: #1f0000;
-}
-
-/* For contact table */
-.contact-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  display: block;         /* responsive scroll */
-  overflow-x: auto;
-}
-
-.contact-table th,
-.contact-table td {
-  padding: 12px;
-  border-bottom: 1px solid #400000;
-  text-align: left;
-  min-width: 140px;
-}
-
-.contact-table th {
-  background: #8b0000;
-  color: #fff;
-}
-
-.contact-table td {
-  background: #1a0000;
-}
-
-.contact-table a {
-  color: #ff9999;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.contact-table a:hover {
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* Small screen fix */
-@media screen and (max-width: 768px) {
-  table, .contact-table {
-    font-size: 0.9rem;
-  }
-}
-
-/* Buttons */
-button{margin-top:20px;padding:12px 30px;border:none;border-radius:30px;cursor:pointer;background:linear-gradient(135deg,#8b0000,#ff4d4d);color:#fff;font-size:1rem;transition:0.3s ease;position:relative;z-index:1;}
-button::after {
-  content:"";
-  position:absolute;
-  inset:0;
+/* =====================
+   Buttons
+===================== */
+button {
+  padding:12px 30px;
+  border:none;
   border-radius:30px;
-  background:rgba(255,255,255,0.05);
-  opacity:0;
+  cursor:pointer;
+  background:linear-gradient(135deg,#8b0000,#ff4d4d);
+  color:#fff;
+  font-size:1rem;
   transition:0.3s;
 }
-button:hover::after{opacity:1;}
 
-/* Dark / Light Mode */
-body.light{background:#f4f4f4;color:#111;}
-body.light section{background:#fff;border:1px solid #ddd;}
-#theme-toggle{position:fixed;top:20px;right:20px;background:#8b0000;color:#fff;padding:10px 12px;border-radius:50%;cursor:pointer;z-index:1000;}
-
-/* Scroll To Top */
-#scrollTop{position:fixed;bottom:30px;right:30px;display:none;padding:12px 15px;border-radius:50%;background:linear-gradient(135deg,#8b0000,#ff4d4d);color:#fff;border:none;cursor:pointer;}
-
-/* Scroll Reveal Animations */
-.fade{opacity:0;transform:translateY(50px);transition:0.9s ease;}
-.fade.show{opacity:1;transform:translateY(0);}
-
-/* Projects Section & EN/BN toggle */
-.projects{position:relative;overflow:hidden;}
-#identityText p{opacity:0;transform:translateY(30px);transition:0.8s ease-out;}
-#identityText.show p{opacity:1;transform:translateY(0);}
-#identityText.show p:nth-child(1){transition-delay:0.1s;}
-#identityText.show p:nth-child(2){transition-delay:0.3s;}
-#identityText.show p:nth-child(3){transition-delay:0.5s;}
-#identityText.show p:nth-child(4){transition-delay:0.7s;}
-#identityText.show p:nth-child(5){transition-delay:0.9s;}
-#langToggle{position:absolute;top:20px;right:20px;padding:8px 16px;border-radius:30px;background:linear-gradient(135deg,#8b0000,#ff4d4d);color:#fff;font-weight:bold;border:none;cursor:pointer;transition:0.3s ease;}
-#langToggle:hover{transform:scale(1.1) rotate(5deg);box-shadow:0 10px 20px rgba(255,77,77,0.6);}
-
-/* Footer */
-.footer{text-align:center;padding:25px 10px;margin-top:50px;background:#0b0000;border-top:1px solid #400000;}
-.footer p{color:#ffcccc;font-size:0.95rem;}
-
-
-
-/* =====================
-   Back Button
-===================== */
-.back-btn {
-  position: fixed;
-  top: 25px;
-  left: 25px;
-  padding: 10px 24px;
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-  text-decoration: none;
-  border-radius: 25px;
-  z-index: 2000;
-  transition: 0.3s ease;
-}
-
-.back-btn:hover {
-  background: #ffcc33;
-  color: #000;
-  transform: translateX(-5px);
+button:hover {
+  transform: scale(1.05);
 }
 
 /* =====================
-   Side Books Button
-===================== */
-/* =====================
-   Side Nav Buttons (Vertical Stack)
-===================== */
-.side-nav-container {
-  position: fixed;
-  top: 90px;           /* page top থেকে distance */
-  right: 25px;         /* right side distance */
-  display: flex;
-  flex-direction: column;  /* vertical stack */
-  gap: 15px;               /* button এর মধ্যে gap */
-  z-index: 2000;
-}
-
-.side-nav-container .side-btn {
-  display: inline-block;
-  padding: 12px 28px;
-  background: linear-gradient(135deg, #ffcc33, #ff9933);
-  color: #000;
-  font-weight: 700;
-  text-decoration: none;
-  border-radius: 30px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.7);
-  transition: 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-}
-
-.side-nav-container .side-btn:hover {
-  transform: translateY(-4px) scale(1.1);
-  box-shadow: 0 18px 45px rgba(255,204,51,0.9);
-}
-
-
-
-
-
-
-.books-table {
-  border-radius: 10px;
-  overflow: hidden;
-  font-size: 1rem;
-}
-
-.books-table td {
-  text-align: left;
-  padding: 12px 15px;
-}
-
-.books-table tbody tr:hover {
-  background-color: #330000;
-}
-
-.books-table thead .section-title {
-  color: #ff4d4d;
-  font-size: 18px;
-  border-bottom: 2px solid #ff4d4d;
-}
-
-
-
-
-
-
-
-/* =====================
-   Expandable Side Menu
+   Expandable Side Menu (FINAL)
 ===================== */
 .side-nav-container {
   position: fixed;
@@ -326,18 +179,16 @@ body.light section{background:#fff;border:1px solid #ddd;}
   right: 25px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   z-index: 2000;
 }
 
-/* Main button */
 .side-main-btn {
   padding: 12px 28px;
   background: linear-gradient(135deg,#ff4d4d,#ff9999);
   color: #fff;
   font-weight: bold;
   border-radius: 30px;
-  text-align: center;
   cursor: pointer;
   box-shadow: 0 12px 30px rgba(0,0,0,0.7);
   transition: 0.3s ease;
@@ -347,7 +198,6 @@ body.light section{background:#fff;border:1px solid #ddd;}
   transform: scale(1.05);
 }
 
-/* Sub buttons */
 .side-sub-btns {
   display: flex;
   flex-direction: column;
@@ -355,6 +205,10 @@ body.light section{background:#fff;border:1px solid #ddd;}
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
+}
+
+.side-sub-btns.show {
+  max-height: 500px;
 }
 
 .side-sub-btn {
@@ -374,55 +228,12 @@ body.light section{background:#fff;border:1px solid #ddd;}
   transform: translateX(0);
 }
 
-
-
-
 /* =====================
-   Profile + Cover Attached
+   Footer
 ===================== */
-
-.profile-area{
-  position: relative;
-  display: inline-block;
-}
-
-.profile{
-  width:150px;
-  height:150px;
-  border-radius:50%;
-  border:4px solid #8b0000;
-  box-shadow:0 0 30px rgba(139,0,0,0,0.9);
-  position: relative;
-  z-index: 3;
-}
-
-/* cover strip */
-.profile-cover{
-  position: absolute;
-  top: 110px;              /* profile er niche attach */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 260px;
-  height: 80px;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 3px solid #8b0000;
-  background: #120000;
-  box-shadow: 0 12px 35px rgba(139,0,0,0.9);
-  z-index: 2;
-}
-
-.profile-cover img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-/* mobile fix */
-@media(max-width:768px){
-  .profile-cover{
-    width: 220px;
-    height: 70px;
-    top: 105px;
-  }
+.footer {
+  text-align:center;
+  padding:25px 10px;
+  background:#0b0000;
+  border-top:1px solid #400000;
 }
